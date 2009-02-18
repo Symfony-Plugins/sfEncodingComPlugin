@@ -1,0 +1,5 @@
+all:
+
+  sf_encoding_com_plugin:
+    userid: 1234156
+    userkey: 123456
