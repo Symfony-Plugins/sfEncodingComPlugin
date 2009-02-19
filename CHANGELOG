@@ -1,0 +1,7 @@
+ Version 1.0.0
+ --------------
+ * [15630]: Updating the readme file
+ * [15617]: * Initial commit of the code
+              * Wrote the class to be used
+              * Needs further testing and adding of the rest of encoding.com's functionality. The AddMedia? functionality should work for now
+ * [15607]: Creating initial repository structure
