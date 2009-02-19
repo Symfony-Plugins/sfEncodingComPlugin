@@ -1,0 +1,74 @@
+# Symfony Doctrine Settings Plugin #
+
+This plugin allows for the easy use and integration of [Encoding.com](http://www.encoding.com)
+
+## Encoding.com ##
+ * [Homepage](http://www.encoding.com)
+ * [API Documentation](http://www.encoding.com/wdocs/ApiDoc)
+ * [Sample Scripts](http://www.encoding.com/wdocs/SampleScripts#php)
+
+## Setup ##
+    [yaml]
+    # /config/app.yml
+    all:
+      sf_encoding_com_plugin:
+        userid: 1234156
+        userkey: 123456
+
+
+## Use ##
+    [php]
+    <?php
+      $encoding_job = new sfEncodingCom();
+      $encoding_job->setSource('http://www.example.org/uploads/video/raw/example1.avi');
+      $encoding_job->setNotifyUrl('http://www.example.org/video/notify/id/1');
+      $encoding_job->addFormat(array(
+      'output'            => 'flv',  # Output Format - REQUIRED
+      'destination'       => 'http://www.example.org/uploads/video/encoded/example1.flv',  # Destination File
+      'thumb_destination' => 'http://www.example.org/uploads/video/thumbnail/example1.jpg',  # Thumbnail Destination
+      ));
+      $encoding_job->send();
+
+      if ( $encoding_job->hasError() ) {
+        var_dump($encoding_job->getError());
+      }
+
+      if ( $encoding_job->hasMessage() ) {
+        var_dump($encoding_job->getMessage());
+      }
+
+### addFormat(array()) ###
+The addFormat method takes an array of all possible format options.  For a documentation on all possible values of these options see the [API Documentation](http://www.encoding.com/wdocs/ApiDoc)
+
+    [php]
+    <?php
+      array(
+        'output'            => null,  # Output Format - REQUIRED
+        'video_codec'       => null,  # Video Codec
+        'audio_codec'       => null,  # Audio Codec
+        'bitrate'           => null,  # Video Bitrate
+        'audio_bitrate'     => null,  # Audio Bitrate
+        'audio_sample_rate' => null,  # Audio Sample Rate
+        'size'              => null,  # Size
+        'crop_left'         => null,  # Crop Left
+        'crop_top'          => null,  # Crop Top
+        'crop_right'        => null,  # Crop Right
+        'crop_bottom'       => null,  # Crop Bottom
+        'thumb_time'        => null,  # Thumb time
+        'thumb_size'        => null,  # Thumb size
+        'add_meta'          => 'yes', # Add meta data
+        'rc_init_occupancy' => null,  # RC Occupancy
+        'minrate'           => null,  # Min Rate
+        'maxrate'           => null,  # Max Rate
+        'bufsize'           => null,  # RC Buffer Size
+        'keyframe'          => null,  # Keyframe Period (GOP)
+        'start'             => null,  # Start From
+        'duration'          => null,  # Result Duration
+        'destination'       => null,  # Destination File
+        'thumb_destination' => null,  # Thumbnail Destination
+        'logo'              => array(
+          'logo_source'     => null,  # Logo URL
+          'logo_x'          => null,  # Logo Left
+          'logo_y'          => null,  # Logo Top
+        ),
+      );
